@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/home.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>MediAid</h1>
+              <span class="subheading">On Your own Doctor...!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview">
+              <h2 class="post-title">
+                “This is a web application which gives prediction on the basis of your given input. In this site, one can find whether a person having diabetes, heart disease and cancer or not. ”
+              </h2>          
+          </div>
+          <hr>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}

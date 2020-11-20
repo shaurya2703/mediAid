@@ -1,0 +1,266 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/cancer.png') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Cancer Predictions</h1>
+              <span class="subheading">Have questions? I have answers.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>“Exercise and diet can help prevent or even totally reverse metabolic conditions like diabetes and cardiovascular disease – only thing is, you’ve got to catch them young… You know, while these conditions are still of ‘impressionable minds’!”</p>
+          <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+          <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+          <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+
+          <form action="{{url_for('cancerpredict')}}" method="post">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Radius_mean 1</label>
+                <input type="text" class="form-control" placeholder="Radius_mean ( range 6.98 to 28.11 )" id="radius_mean" name='radius_mean' required data-validation-required-mess="Please enter your radius_mean.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>texture_mean</label>
+                <input type="text" class="form-control" placeholder="Texture_mean ( range 9.71 to 39.28 )" id="texture_mean " name="texture_mean" required data-validation-required-mess="Please enter your texture_mean.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>perimeter_mean</label>
+                <input type="text" class="form-control" placeholder="Perimeter_mean ( range  43.790 to 188.50 )" name="perimeter_mean" id="perimeter_mean" required data-validation-required-mess="Please enter your perimeter_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>area_mean</label>
+                <input type="text" class="form-control" placeholder="Area_mean  ( range  143.50 to 2501.0 )" name="area_mean" id="area_mean" required data-validation-required-mess="Please enter your area_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label> Smoothness_mean</label>
+                <input type="text" class="form-control" placeholder=" Smoothness_mean ( range  0.052630 to 0.163400 )" name="Smoothness_mean" id="Smoothness_mean" required data-validation-required-mess="Please enter your  Smoothness_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Compactness_mean</label>
+                <input type="text" class="form-control" placeholder="Compactness_mean ( range  0.01938 to 0.0.34540 )" name="Compactness_mean" id="Compactness_mean" required data-validation-required-mess="Please enter your Compactness_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Concavity_mean</label>
+                <input type="text" class="form-control" placeholder="Concavity_mean ( range 0.00 to 0.42)" name="Concavity_mean" id="Concavity_mean" required data-validation-required-mess="Please enter your  Concavity_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Concave points_mean</label>
+                <input type="text" class="form-control" placeholder="Concave points_mean( range 0.00 to 0.20)" name="Concave points_mean" id="Concave points_mean" required data-validation-required-mess="Please enter your Concave points_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Symmetry_mean</label>
+                <input type="text" class="form-control" placeholder="Symmetry_mean ( range 0.10 to 0.30)" name="Symmetry_mean" id="Symmetry_mean" required data-validation-required-mess="Please enter your Symmetry_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Fractal_dimension_mean</label>
+                <input type="text" class="form-control" placeholder="Fractal_dimension_mean ( range 0.076 to 0.207 )" name="Fractal_dimension_mean" id="Fractal_dimension_mean" required data-validation-required-mess="Please enter your Fractal_dimension_mean">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Radius_se</label>
+                <input type="text" class="form-control" placeholder="Radius_se ( range 0.11 to 2.87)" name="Radius_se" id="Radius_se" required data-validation-required-mess="Please enter your Radius_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Texture_se</label>
+                <input type="text" class="form-control" placeholder="Texture_se ( range 0.36 to 4.88 )" name="Texture_se" id="Texture_se" required data-validation-required-mess="Please enter your Texture_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Perimeter_se</label>
+                <input type="text" class="form-control" placeholder="Perimeter_se ( range 0.75 to 21.98 )" name="Perimeter_se" id="Perimeter_se" required data-validation-required-mess="Please enter your Perimeter_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Area_se</label>
+                <input type="text" class="form-control" placeholder="Area_se ( range 6.802 to 542.2)" name="Area_se" id="Area_se" required data-validation-required-mess="Please enter your Area_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Smoothness_se</label>
+                <input type="text" class="form-control" placeholder="Smoothness_se ( range 0.001713 to 0.031130 )" name="Smoothness_se" id="Smoothness_se" required data-validation-required-mess="Please enter your Smoothness_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Compactness_se</label>
+                <input type="text" class="form-control" placeholder="Compactness_se ( range 0.002252 to 0.135400 )" name="Compactness_se" id="Compactness_se" required data-validation-required-mess="Please enter your Compactness_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Concavity_se</label>
+                <input type="text" class="form-control" placeholder="Concavity_se ( range 0.000000 to 0.396000 )" name="Concavity_se" id="Concavity_se" required data-validation-required-mess="Please enter your Concavity_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Concave points_se</label>
+                <input type="text" class="form-control" placeholder="Concave points_se ( range 0.00000 to 0.05279 )" name="Concave points_se" id="Concave points_se" required data-validation-required-mess="Please enter your Concave points_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+              <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Symmetry_se</label>
+                <input type="text" class="form-control" placeholder="Symmetry_se ( range 0.007882 to 0.078950 )" name="Symmetry_se" id="Symmetry_se  " required data-validation-required-mess="Please enter your Symmetry_se ">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Fractal_dimension_se</label>
+                <input type="text" class="form-control" placeholder="Fractal_dimension_se ( range 0.000895   to 0.029840)" name="Fractal_dimension_se" id="Fractal_dimension_se" required data-validation-required-mess="Please enter your Fractal_dimension_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Radius_worst</label>
+                <input type="text" class="form-control" placeholder="Radius_worst ( range 0.36 to 4.88 )" name="Radius_worst" id="Radius_worst" required data-validation-required-mess="Please enter your Radius_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Perimeter_se</label>
+                <input type="text" class="form-control" placeholder="Perimeter_se ( range 7.930000  to 36.040000 )" name="Perimeter_se" id="Perimeter_se" required data-validation-required-mess="Please enter your Perimeter_se">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Texture_worst</label>
+                <input type="text" class="form-control" placeholder="Texture_worst( range 12.020000  to 49.540000)" name="Texture_worst" id="Texture_worst" required data-validation-required-mess="Please enter yourTexture_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Perimeter_worst</label>
+                <input type="text" class="form-control" placeholder="Perimeter_worst( range 50.410 to 251.20 )" name="Perimeter_worst" id="Perimeter_worst" required data-validation-required-mess="Please enter your Perimeter_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Area_worst</label>
+                <input type="text" class="form-control" placeholder="Area_worst( range 185.20 to 4254.00 )" name="Area_worst" id="Area_worst" required data-validation-required-mess="Please enter your Area_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Smoothness_worst</label>
+                <input type="text" class="form-control" placeholder="Smoothness_worst( range 0.071170  to 0.222600 )" name="Smoothness_worst" id="Smoothness_worst" required data-validation-required-mess="Please enter your Smoothness_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Compactness_worst  </label>
+                <input type="text" class="form-control" placeholder="Compactness_worst( range 0.027290 to 1.058000 )" name="Compactness_worst" id="Compactness_worst" required data-validation-required-mess="Please enter your Compactness_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Concavity_worst</label>
+                <input type="text" class="form-control" placeholder="Concavity_worst( range 0.000000   to 1.252000 )" name="Concavity_worst" id="Concavity_worst" required data-validation-required-mess="Please enter your Concavity_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Concave points_worst</label>
+                <input type="text" class="form-control" placeholder="Concave points_worst( range 0.000000  to 0.291000 )" name="Concave points_worst" id="Concave points_worst" required data-validation-required-mess="Please enter your Concave points_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Symmetry_worst</label>
+                <input type="text" class="form-control" placeholder="Symmetry_worst( range 0.156500   to 0.663800 )" name="Symmetry_worst" id="Symmetry_worst" required data-validation-required-mess="Please enter your Symmetry_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Fractal_dimension_worst</label>
+                <input type="text" class="form-control" placeholder="Fractal_dimension_worst( range 0.055040 to0.207500 )" name="Fractal_dimension_worst" id="Fractal_dimension_worst" required data-validation-required-mess="Please enter your Fractal_dimension_worst">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="suCompactness_meant" class="btn btn-primary" id="sendMessButton">Submit</button>
+            </div>
+          </form>
+
+                  <br>
+        {{ prediction_text }}
+        </div>
+      </div>
+    </div>
+
+   {% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/diabetes.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h2>Diabetes Diasease Predictions</h2>
+              
+              	
+              	{% if prediction_text == 1%}
+					<h1 ><span>Oops! You have DIABETES.</span></h1>
+				{% elif prediction_text==0 %}
+					<h1 ><span >Great! You DON'T have diabetes.</span></h1>
+		   		{% endif %}
+		   	 
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+   
+   {% endblock %}

@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/diabetes.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Diabetes Predictions</h1>
+              <span class="subheading">Have questions? I have answers.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>“Exercise and diet can help prevent or even totally reverse metabolic conditions like diabetes and cardiovascular disease – only thing is, you’ve got to catch them young… You know, while these conditions are still of ‘impressionable minds’!”</p>
+          <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+          <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+          <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+
+          <form action="{{url_for('diabetespredict')}}" method="post">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Pregnancies</label>
+                <input type="text" class="form-control" placeholder="Pregnancies" id="Pregnancies" name='Pregnancies' required data-validation-required-message="Please enter your Pregnancies number.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Glucose </label>
+                <input type="text" class="form-control" placeholder="Glucose (range (60.00 to 199.00))" id="Glucose" name="Glucose" required data-validation-required-message="Please enter your Glucose level.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>BloodPressure</label>
+                <input type="text" class="form-control" placeholder="BloodPressure (range (10.00 to 60.00))" name="BloodPressure" id="BloodPressure" required data-validation-required-message="Please enter your BloodPressure">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>SkinThickness</label>
+                <input type="text" class="form-control" placeholder="SkinThickness  (range (0.10 to 200.00))" name="SkinThickness" id="SkinThickness" required data-validation-required-message="Please enter your SkinThickness">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label> Insulin</label>
+                <input type="text" class="form-control" placeholder=" Insulin (range (00.00 to 600.00))" name="Insulin" id="Insulin" required data-validation-required-message="Please enter your  Insulin">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>BMI</label>
+                <input type="text" class="form-control" placeholder="BMI (range (10.00 to 60.00))" name="BMI" id="BMI" required data-validation-required-message="Please enter your BMI">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>DiabetesPedigreeFunction</label>
+                <input type="text" class="form-control" placeholder="DiabetesPedigreeFunction range (1.0 to 2.0))" name="DiabetesPedigreeFunction" id="DiabetesPedigreeFunction" required data-validation-required-message="Please enter your  DiabetesPedigreeFunction">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Age</label>
+                <input type="text" class="form-control" placeholder="Age" name="Age" id="Age" required data-validation-required-message="Please enter your Age">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+            </div>
+          </form>
+
+                  <br>
+        {{ prediction_text }}
+        </div>
+      </div>
+    </div>
+
+   {% endblock %}

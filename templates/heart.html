@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/heart.jpg') }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="page-heading">
+              <h1>Heart Diasease Predictions</h1>
+              <span class="subheading">Have questions? I have answers.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <p>“Exercise and diet thalassemia n help prevent or even totally reverse metabolic conditions like diabetes and thalassemia rdiovascular disease – only thing is, you’ve got to thalassemia tch them young… You know, while these conditions are still of ‘impressionable minds’!”</p>
+          <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+          <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+          <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work lothalassemia lly! -->
+          <form action="{{url_for('heartpredict')}}" method="post">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Age</label>
+                <input type="text" class="form-control" placeholder="Age" id="age" name='age' required data-validation-required-message="Please enter your Pregnancies number.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Sex 1=male / 0= female</label>
+                <input type="text" class="form-control" placeholder="Sex 1=male / 0= female" id="sex" name="sex" required data-validation-required-message="Please enter your sex.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Chest Pain</label>
+                <input type="text" class="form-control" placeholder="ChestPain (range 1 to 4)" name="cp" id="cp" required data-validation-required-message="Please enter your cp">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Resting Blood Pressure</label>
+                <input type="text" class="form-control" placeholder="Resting Blood Pressure (range 94.00 to 200.00)" name="Resting Blood Pressure" id="Resting Blood Pressure" required data-validation-required-message="Please enter your Resting Blood Pressure">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Serum Cholestrol</label>
+                <input type="text" class="form-control" placeholder="Serum Cholestrol (range 0,1)" name="Serum Cholestrol" id="Serum Cholestrol" required data-validation-required-message="Please enter your  Serum Cholestrol">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Fasting Blood Sugar</label>
+                <input type="text" class="form-control" placeholder="Fasting Blood Sugar (range 0,1)" name="Fasting Blood Sugar (range 0,1)" id="Fasting Blood Sugar" required data-validation-required-message="Please enter your Fasting Blood Sugar">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Resting ECG</label>
+                <input type="text" class="form-control" placeholder="Resting ECG (range 0,1,2)" name="Resting ECG" id="Resting ECG" required data-validation-required-message="Please enter your Resting ECG">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Max heart rate achieved</label>
+                <input type="text" class="form-control" placeholder="Max heart rate achieved  (range 71.00 to 160.00)" name="Max heart rate achieved" id="Max heart rate achieved" required data-validation-required-message="Please enter your Max heart rate achieved">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Exercise induced angina</label>
+                <input type="text" class="form-control" placeholder="Exercise induced angina (range (0,1))" name="Exercise induced angina" id="Exercise induced angina" required data-validation-required-message="Please enter your Exercise induced angina">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Peak exercise ST segment</label>
+                <input type="text" class="form-control" placeholder="Peak exercise ST segment (range 0.0 to 6.2)" name="Peak exercise ST segment" id="Peak exercise ST segment" required data-validation-required-message="Please enter your Resting ECG">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Number of major vessels(slope)</label>
+                <input type="text" class="form-control" placeholder="Number of major vessels(slope) range(0,1,2,3)" name="Number of major vessels(slope)" id="Number of major vessels(slope)" required data-validation-required-message="Please enter your Number of major vessels(slope)">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Thalassemia </label>
+                <input type="text" class="form-control" placeholder="Talassemia range(3,6,7)" name="thalassemia " id="Thalassemia " required data-validation-required-message="Please enter your thalassemia ">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>CA</label>
+                <input type="text" class="form-control" placeholder="CA range(0,3)" name="ca" id="ca" required data-validation-required-message="Please enter your ca">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+            </div>
+          </form>
+
+                  <br>
+        {{ prediction_text }}
+        </div>
+      </div>
+    </div>
+
+   {% endblock %}
