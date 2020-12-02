@@ -11,14 +11,14 @@
               <h2>Cancer Diasease Predictions</h2>
               {% if prediction_text == 'M'%}
                  <h1><span>Oops! You have Malignant tumor.</span></h1>
-                 <a href="payment.html">
-                  <button type="button" class="btn btn-primary">Consult A Doctor</button>
-                </a>
+                 <form action="/payment" , method="GET">
+                  <button type="submit" class="btn btn-primary">Consult A Doctor</button>
+                </form>
 				      {% elif prediction_text==0 %}
                  <h1><span >Oops! You have Benign tumor.</span></h1>
-                 <a href="payment.html">
-                  <button type="button" class="btn btn-primary">Consult A Doctor</button>
-                </a>
+                 <form action="/payment" , method="GET">
+                  <button type="submit" class="btn btn-primary">Consult A Doctor</button>
+                </form>
 		   		   {% endif %}
 		   	 
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Integration in Python</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container text-center">
+        <h1 class="text-center">This is the payment page</h1>
+
+        <form action="/success" class="mt-5" method="POST">
+            <script 
+            src="https://checkout.razorpay.com/v1/checkout.js" 
+            data-key="rzp_test_Gw4IVEcDgIy0iO"  
+                data-amount="{{payment['amount']}}"  
+                data-currency="INR"
+                data-order_id="{{payment['order_id']}}" 
+                data-buttontext="Pay with Razorpay" 
+                data-name="ABC"
+                data-description="Test Transaction"
+                data-theme.color="#F37254">
+            </script>
+            <input type="hidden" custom="Hidden Element" name="hidden">
+        </form>
+
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</html>

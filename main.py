@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask,render_template , request , jsonify , redirect , url_for , make_response
+from flask_sqlalchemy import SQLAlchemy 
+import razorpay
 import numpy as np
 import pickle
 import math
@@ -6,7 +8,16 @@ app = Flask(__name__)
 model = pickle.load(open('diabetesmodel.pkl','rb'))
 model1 = pickle.load(open('heartmodel.pkl','rb'))
 model2 = pickle.load(open('cancermodel.pkl','rb'))
+db  = SQLAlchemy(app)
+app.config['SECRET_KEY'] = 'PAYMENT_APP'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///payments.db'
 
+class User(db.Model):
+    id = db.Column(db.Integer , primary_key=True)
+    email = db.Column(db.String(120),nullable=False)
+    name = db.Column(db.String(120),nullable=False)
+    purpose = db.Column(db.String(200),nullable=False)
+    amount = db.Column(db.String(120),nullable=False)
 
 @app.route("/")
 def home():
@@ -63,5 +74,43 @@ def cancerpredict():
     return render_template('cancerresult.html',prediction_text=prediction)
 
 
+@app.route('/payment',methods=['GET','POST'])
+def make_payment():
+    if request.method == "POST":
+        email = request.form.get('email')
+        name = request.form.get('name')
+        purpose = request.form.get('purpose')
+        amount = request.form.get('amount')
+        user = User(email=email,name=name,purpose=purpose,amount=amount)
+        db.session.add(user)
+        db.session.commit()
+        print(user.purpose)
+        return redirect(url_for("pay",id=user.id))
+
+    return render_template('payment_page.html')
+
+@app.route('/pay/<id>',methods = ["GET","POST"])
+def pay(id):
+    user = User.query.filter_by(id=id).first()
+
+    client = razorpay.Client(auth=("rzp_test_Gw4IVEcDgIy0iO","s0ed3WwDTwGtrGwqzJ3TqZOO"))
+    payment = client.order.create({"amount":(int(user.amount) * 100),"currency":"INR","payment_capture":"1"})
+    
+    if request.method=="POST":
+        return redirect(url_for("success", user_id = user.id))
+
+    print(payment)    
+    return render_template("pay.html", payment=payment,user_id = user.id)
+
+
+@app.route('/success',methods = ['GET','POST'])
+def success():
+    # user = User.query.filter_by(id=id).first()
+    # print(user)
+    return render_template('success.html')   
+
+
+
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5500)
+    db.create_all()
+    app.run(host='127.0.0.1', port=5000)
