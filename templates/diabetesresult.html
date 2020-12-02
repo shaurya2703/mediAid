@@ -12,7 +12,10 @@
               
               	
               	{% if prediction_text == 1%}
-					<h1 ><span>Oops! You have DIABETES.</span></h1>
+          <h1 ><span>Oops! You have DIABETES.</span></h1>
+          <a href="payment.html">
+            <button type="button" class="btn btn-primary">Consult A Doctor</button>
+          </a>
 				{% elif prediction_text==0 %}
 					<h1 ><span >Great! You DON'T have diabetes.</span></h1>
 		   		{% endif %}
