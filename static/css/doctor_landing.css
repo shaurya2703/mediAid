@@ -1,0 +1,14 @@
+.jumbotron{
+	padding: 5%;
+	text-align: center;
+}
+
+.list-group{
+	font-size: 2rem;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding: 2%;
+	margin-top: 5%;
+	margin-bottom: 10%;
+}
+

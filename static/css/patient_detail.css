@@ -1,0 +1,13 @@
+.jumbotron{
+	padding: 5%;
+	text-align: center;
+}
+
+form{
+	padding: 1%;
+	margin-top: 0.8%;
+}
+
+.form-group{
+	padding: 10%;
+}

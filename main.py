@@ -4,13 +4,17 @@ import razorpay
 import numpy as np
 import pickle
 import math
+
+
 app = Flask(__name__)
 model = pickle.load(open('diabetesmodel.pkl','rb'))
 model1 = pickle.load(open('heartmodel.pkl','rb'))
 model2 = pickle.load(open('cancermodel.pkl','rb'))
-db  = SQLAlchemy(app)
+
 app.config['SECRET_KEY'] = 'PAYMENT_APP'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///payments.db'
+db  = SQLAlchemy(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer , primary_key=True)
@@ -19,6 +23,9 @@ class User(db.Model):
     purpose = db.Column(db.String(200),nullable=False)
     amount = db.Column(db.String(120),nullable=False)
 
+    def __repr__(self):
+        return f"User('{self.name}' , '{self.email}' , '{self.purpose}' , '{self.amount}' )"
+
 @app.route("/")
 def home():
     return render_template('home.html')
@@ -26,6 +33,16 @@ def home():
 @app.route('/index')
 def patient_page():
     return render_template('index.html')
+
+@app.route('/doctor')
+def doctor_page():
+    return render_template('doctor_landing.html', users = User.query.all())
+
+@app.route('/patient_detail')
+def patient_detail():
+    user_name = request.form.get('user_name')
+    user_disease = request.form.get('user_disease')
+    return render_template('patient_detail.html', name=user_name , disease = user_disease)
 
 @app.route("/heart")
 def heart():

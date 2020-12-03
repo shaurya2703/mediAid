@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Doctor</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="\static\css\doctor_landing.css">
+</head>
+<body>
+	<div class="jumbotron">
+		<h1><img src="\static\img\patient.png"> Patient List </h1>
+		<!-- <div class="list-group">
+			{% for user in users %}
+			<a href="#" class="list-group-item list-group-item-action">{{user.name}}  ( {{user.purpose}} )</a>
+    		{% endfor %}
+		</div> -->
+	
+		<table class="table table-hover table-dark">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Disease</th>
+				<th>Action</th>
+			</tr>
+			{% for user in users %}
+			<tr>
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.purpose}}</td>
+				<td>
+					<a href="/patient_detail" class="btn btn-success btn-xs">Add Prescreption</a>
+				</td>
+			</tr>
+    		{% endfor %}
+		</table>
+	
+	</div>
+</body>
+
+</html>
