@@ -1,9 +1,10 @@
-from flask import Flask,render_template , request , jsonify , redirect , url_for , make_response
+from flask import Flask,render_template , request , jsonify , redirect , url_for , make_response,flash
 from flask_sqlalchemy import SQLAlchemy 
 import razorpay
 import numpy as np
 import pickle
 import math
+import smtplib
 
 
 app = Flask(__name__)
@@ -38,11 +39,34 @@ def patient_page():
 def doctor_page():
     return render_template('doctor_landing.html', users = User.query.all())
 
-@app.route('/patient_detail')
-def patient_detail():
-    user_name = request.form.get('user_name')
-    user_disease = request.form.get('user_disease')
-    return render_template('patient_detail.html', name=user_name , disease = user_disease)
+@app.route('/patient_detail/<id>/',methods=['GET','POST'])
+def patient_detail(id):
+    user = User.query.get(id)
+    return render_template('patient_detail.html',user = user)
+
+def send_mail(user):
+    #creates a SMTP session
+    server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+    server.ehlo()
+    #Authentication
+    server.login('shauryakhanna56@gmail.com','Khannashaurya')
+    #message to be sent
+    subject = "Your Bed Has been Booked!"
+    body = f'MediAid has successfully booked a bed for you \n Time : Tomorrow 12 noon \n Amount Paid : {user.amount}'
+    #send the mail
+    message = f"Subject: {subject}\n\n {body}"
+    server.sendmail('shauryakhanna56@gmail.com',user.email,message)
+
+    server.quit()
+
+@app.route('/book_bed/<id>/',methods=['GET','POST'])
+def delete(id):
+    user = User.query.get(id)
+    send_mail(user)
+    db.session.delete(user)
+    db.session.commit()
+    flash("Bed Booked Successfully for the patient")
+    return redirect(url_for("doctor_page"))
 
 @app.route("/heart")
 def heart():

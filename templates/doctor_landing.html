@@ -29,12 +29,13 @@
 				<td>{{user.email}}</td>
 				<td>{{user.purpose}}</td>
 				<td>
-					<a href="/patient_detail" class="btn btn-success btn-xs">Add Prescreption</a>
+					<a href="/patient_detail/{{user.id}}" class="btn btn-success btn-xs">Add Prescreption</a>
+					<a href="/book_bed/{{user.id}}" class="btn btn-danger btn-xs">Book Bed</a>
 				</td>
 			</tr>
     		{% endfor %}
 		</table>
-	
+		<a href="/" class="btn btn-success btn-xs">Home Page</a>
 	</div>
 </body>
 
