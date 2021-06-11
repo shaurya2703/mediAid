@@ -49,13 +49,13 @@ def send_mail(user):
     server = smtplib.SMTP_SSL("smtp.gmail.com",465)
     server.ehlo()
     #Authentication
-    server.login('shauryakhanna56@gmail.com','Khannashaurya')
+    server.login('senderemailid','password')
     #message to be sent
     subject = "Your Bed Has been Booked!"
     body = f'MediAid has successfully booked a bed for you \n Time : Tomorrow 12 noon \n Amount Paid : {user.amount}'
     #send the mail
     message = f"Subject: {subject}\n\n {body}"
-    server.sendmail('shauryakhanna56@gmail.com',user.email,message)
+    server.sendmail('receivereamilid',user.email,message)
 
     server.quit()
 
@@ -134,7 +134,7 @@ def make_payment():
 def pay(id):
     user = User.query.filter_by(id=id).first()
 
-    client = razorpay.Client(auth=("rzp_test_Gw4IVEcDgIy0iO","s0ed3WwDTwGtrGwqzJ3TqZOO"))
+    client = razorpay.Client(auth=("add auth here","add auth here"))
     payment = client.order.create({"amount":(int(user.amount) * 100),"currency":"INR","payment_capture":"1"})
     
     if request.method=="POST":
